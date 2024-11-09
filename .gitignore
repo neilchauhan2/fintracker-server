@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependency directories
+jspm_packages/
+coverage/
+
+# Build output
+dist/
+build/
+
+# Sequelize migration files
+migrations/
+
+# Optional npm cache directory
+.npm/
+
+# Mac and IDE-specific files
+.DS_Store
+.vscode/
+.idea/
+
+# Ignore Docker-related files (if using Docker)
+docker-compose.override.yml
+.dockerignore
+
+# Ignore coverage output (e.g., Jest code coverage)
+coverage/
