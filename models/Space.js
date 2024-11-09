@@ -11,6 +11,10 @@ const Space = sequelize.define("Space", {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 module.exports = Space;
