@@ -11,4 +11,14 @@ async function createSpace(req, res) {
   }
 }
 
-module.exports = { createSpace };
+async function fetchSpaces(req, res) {
+  try {
+    const spaces = await Space.findAll();
+    res.json(spaces);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch spaces" });
+  }
+}
+
+module.exports = { createSpace, fetchSpaces };
