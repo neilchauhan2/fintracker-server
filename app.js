@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { sequelize } = require("./models");
 const spaceRoutes = require("./routes/spaceRoutes");
+const transactionRoutes = require("./routes/transactionRoutes");
 
 const app = express();
 app.use(express.json());
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/spaces", spaceRoutes);
+app.use(transactionRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

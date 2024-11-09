@@ -13,6 +13,14 @@ const Transaction = sequelize.define("Transaction", {
   category: DataTypes.STRING,
   date: DataTypes.DATE,
   description: DataTypes.TEXT,
+  spaceId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      model: Space,
+      key: "spaceId",
+    },
+  },
 });
 
 Transaction.belongsTo(Space, { foreignKey: "spaceId" });
