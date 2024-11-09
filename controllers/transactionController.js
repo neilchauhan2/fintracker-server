@@ -33,4 +33,56 @@ async function fetchTransactions(req, res) {
   }
 }
 
-module.exports = { createTransaction, fetchTransactions };
+async function updateTransaction(req, res) {
+  try {
+    const { spaceId, transactionId } = req.params;
+    const { type, amount, category, date, description } = req.body;
+    const transaction = await Transaction.findOne({
+      where: { id: transactionId, spaceId },
+    });
+
+    if (!transaction) {
+      res.status(404).send({ error: "Transaction not found" });
+      return;
+    }
+    await transaction.update({
+      ...transaction,
+      type,
+      amount,
+      category,
+      date,
+      description,
+    });
+    res.status(200).json(transaction);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to update transaction" });
+  }
+}
+
+async function deleteTransaction(req, res) {
+  try {
+    const { spaceId, transactionId } = req.params;
+    const transaction = await Transaction.findOne({
+      where: { id: transactionId, spaceId },
+    });
+
+    if (!transaction) {
+      res.status(404).send({ error: "Transaction not found" });
+      return;
+    }
+
+    await transaction.destroy();
+    res.status(200).json({ message: "Transaction deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to delete transaction" });
+  }
+}
+
+module.exports = {
+  createTransaction,
+  fetchTransactions,
+  updateTransaction,
+  deleteTransaction,
+};
