@@ -1,11 +1,13 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const { sequelize } = require("./models");
 const spaceRoutes = require("./routes/spaceRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Test database connection and sync models
 sequelize
